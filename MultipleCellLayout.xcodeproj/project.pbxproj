@@ -21,6 +21,9 @@
 		431F505A26F4EE6F00F1F36F /* CellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F505926F4EE6F00F1F36F /* CellConfigurator.swift */; };
 		431F506226F4F14B00F1F36F /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F506126F4F14B00F1F36F /* Builder.swift */; };
 		431F506726F4F18D00F1F36F /* ExpandableCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F506626F4F18D00F1F36F /* ExpandableCollectionViewCell.swift */; };
+		431F507126F4F7F500F1F36F /* ExpandableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F507026F4F7F500F1F36F /* ExpandableModel.swift */; };
+		431F507A26F4F85900F1F36F /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F507926F4F85900F1F36F /* ViewModel.swift */; };
+		431F508226F4F88400F1F36F /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F508126F4F88400F1F36F /* Dynamic.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +64,9 @@
 		431F505926F4EE6F00F1F36F /* CellConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellConfigurator.swift; sourceTree = "<group>"; };
 		431F506126F4F14B00F1F36F /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
 		431F506626F4F18D00F1F36F /* ExpandableCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableCollectionViewCell.swift; sourceTree = "<group>"; };
+		431F507026F4F7F500F1F36F /* ExpandableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableModel.swift; sourceTree = "<group>"; };
+		431F507926F4F85900F1F36F /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		431F508126F4F88400F1F36F /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,8 +117,10 @@
 		431F501226F4ED2600F1F36F /* MultipleCellLayout */ = {
 			isa = PBXGroup;
 			children = (
-				431F504B26F4EE0A00F1F36F /* Util */,
 				431F504A26F4EE0100F1F36F /* View */,
+				431F507826F4F82B00F1F36F /* ViewModel */,
+				431F506F26F4F7E300F1F36F /* Model */,
+				431F504B26F4EE0A00F1F36F /* Util */,
 				431F504926F4EDD600F1F36F /* AppLifeCycle */,
 				431F501926F4ED2600F1F36F /* Main.storyboard */,
 				431F501F26F4ED2900F1F36F /* Assets.xcassets */,
@@ -166,6 +174,7 @@
 				431F505426F4EE5700F1F36F /* ConfigurableCell.swift */,
 				431F505926F4EE6F00F1F36F /* CellConfigurator.swift */,
 				431F506126F4F14B00F1F36F /* Builder.swift */,
+				431F508126F4F88400F1F36F /* Dynamic.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -176,6 +185,22 @@
 				431F506626F4F18D00F1F36F /* ExpandableCollectionViewCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		431F506F26F4F7E300F1F36F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				431F507026F4F7F500F1F36F /* ExpandableModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		431F507826F4F82B00F1F36F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				431F507926F4F85900F1F36F /* ViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -311,10 +336,13 @@
 				431F505526F4EE5700F1F36F /* ConfigurableCell.swift in Sources */,
 				431F504D26F4EE4800F1F36F /* ReusableType.swift in Sources */,
 				431F501826F4ED2600F1F36F /* ViewController.swift in Sources */,
+				431F507A26F4F85900F1F36F /* ViewModel.swift in Sources */,
+				431F507126F4F7F500F1F36F /* ExpandableModel.swift in Sources */,
 				431F501E26F4ED2600F1F36F /* MultipleCellLayout.xcdatamodeld in Sources */,
 				431F501426F4ED2600F1F36F /* AppDelegate.swift in Sources */,
 				431F505A26F4EE6F00F1F36F /* CellConfigurator.swift in Sources */,
 				431F506726F4F18D00F1F36F /* ExpandableCollectionViewCell.swift in Sources */,
+				431F508226F4F88400F1F36F /* Dynamic.swift in Sources */,
 				431F501626F4ED2600F1F36F /* SceneDelegate.swift in Sources */,
 				431F506226F4F14B00F1F36F /* Builder.swift in Sources */,
 			);

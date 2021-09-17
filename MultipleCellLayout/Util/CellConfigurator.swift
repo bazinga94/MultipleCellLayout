@@ -15,7 +15,7 @@ protocol CellConfigurator {
 	func configure(cell: Cell)
 }
 
-class TableCellConfigurator<Cell: ConfigurableCell, CellHolder: ReusableCellHolder, DataType>: CellConfigurator where Cell.DataType == DataType, Cell: UITableViewCell {
+class CollectionCellConfigurator<Cell: ConfigurableCell, CellHolder: ReusableCellHolder, DataType>: CellConfigurator where Cell.DataType == DataType, Cell: UICollectionViewCell {
 
 	final class var cellIdentifier: String {
 		return String(describing: Cell.self)

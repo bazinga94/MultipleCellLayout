@@ -7,6 +7,9 @@
 
 import UIKit
 
-class ExpandableCollectionViewCell: UICollectionViewCell {
+class ExpandableCollectionViewCell: UICollectionViewCell, ConfigurableCell {
 
+	func configure(data: ExpandableModel) {
+		
+	}
 }

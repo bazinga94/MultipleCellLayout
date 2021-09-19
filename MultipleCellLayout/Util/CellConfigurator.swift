@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol CellConfigurator {
+protocol CellConfigurable {
 	associatedtype CellHolder: ReusableCellHolder
 //	associatedtype Cell: ConfigurableCell
 //	associatedtype Cell: ReusableCell
@@ -16,20 +16,14 @@ protocol CellConfigurator {
 	func configure(cell: UIView)
 }
 
-class CollectionCellConfigurator<Cell: ConfigurableCell, CellHolder: ReusableCellHolder, DataType>: CellConfigurator where Cell.DataType == DataType, Cell: UICollectionViewCell {
+class CellConfigurator<CellHolder: ReusableCellHolder>: CellConfigurable {
+
+	class var cellClass: AnyClass {		// override 가능
+		fatalError("Must be implemented by children")
+	}
 
 	final class var cellIdentifier: String {
-		return String(describing: Cell.self)
-	}
-
-	final class var cellClass: AnyClass {
-		return Cell.self
-	}
-
-	let item: DataType
-
-	init(item: DataType) {
-		self.item = item
+		return String(describing: cellClass)
 	}
 
 	static func registerCell(on reusableCellHolder: CellHolder) {
@@ -39,6 +33,29 @@ class CollectionCellConfigurator<Cell: ConfigurableCell, CellHolder: ReusableCel
 	}
 
 	func configure(cell: UIView) {
-		(cell as! Cell ).configure(data: item)
+		// 자식 클래스에서 override하여 구현
+	}
+}
+
+class CollectionCellConfigurator<Cell: ConfigurableCell & ReusableCell, DataType>: CellConfigurator<Cell.CellHolder> where Cell.DataType == DataType {
+
+	final class override var cellClass: AnyClass {
+		return Cell.self
+	}
+
+	let item: DataType
+
+	init(item: DataType) {
+		self.item = item
+	}
+
+//	static func registerCell(on reusableCellHolder: CellHolder) {
+//		let bundle = Bundle(for: cellClass)
+//		let nib = UINib(nibName: cellIdentifier, bundle: bundle)
+//		reusableCellHolder.register(nib, forCellWithReuseIdentifier: cellIdentifier)
+//	}
+
+	override func configure(cell: UIView) {
+		(cell as! Cell).configure(data: item)
 	}
 }

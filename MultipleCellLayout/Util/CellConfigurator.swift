@@ -9,10 +9,11 @@ import UIKit
 
 protocol CellConfigurator {
 	associatedtype CellHolder: ReusableCellHolder
-	associatedtype Cell: ConfigurableCell
+//	associatedtype Cell: ConfigurableCell
+//	associatedtype Cell: ReusableCell
 
 	static func registerCell(on reusableCellHolder: CellHolder)
-	func configure(cell: Cell)
+	func configure(cell: UIView)
 }
 
 class CollectionCellConfigurator<Cell: ConfigurableCell, CellHolder: ReusableCellHolder, DataType>: CellConfigurator where Cell.DataType == DataType, Cell: UICollectionViewCell {
@@ -37,7 +38,7 @@ class CollectionCellConfigurator<Cell: ConfigurableCell, CellHolder: ReusableCel
 		reusableCellHolder.register(nib, forCellWithReuseIdentifier: cellIdentifier)
 	}
 
-	func configure(cell: Cell) {
-		cell.configure(data: item)
+	func configure(cell: UIView) {
+		(cell as! Cell ).configure(data: item)
 	}
 }

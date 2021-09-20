@@ -12,7 +12,8 @@ protocol CellConfigurable {
 //	associatedtype Cell: ConfigurableCell
 //	associatedtype Cell: ReusableCell
 
-	static func registerCell(on reusableCellHolder: CellHolder)
+	static func registerCellAsXib(on reusableCellHolder: CellHolder)
+	static func registerCellAsCustom(on reusableCellHolder: CellHolder)
 	func configure(cell: UIView)
 }
 
@@ -26,10 +27,14 @@ class CellConfigurator<CellHolder: ReusableCellHolder>: CellConfigurable {
 		return String(describing: cellClass)
 	}
 
-	static func registerCell(on reusableCellHolder: CellHolder) {
+	static func registerCellAsXib(on reusableCellHolder: CellHolder) {
 		let bundle = Bundle(for: cellClass)
 		let nib = UINib(nibName: cellIdentifier, bundle: bundle)
 		reusableCellHolder.register(nib, forCellWithReuseIdentifier: cellIdentifier)
+	}
+
+	static func registerCellAsCustom(on reusableCellHolder: CellHolder) {
+		reusableCellHolder.register(cellClass, forCellWithReuseIdentifier: cellIdentifier)
 	}
 
 	func configure(cell: UIView) {

@@ -14,11 +14,15 @@ class ViewModel {
 	func fetch() {
 		items.value = [
 			[
-				CollectionCellConfigurator<ExpandableCollectionViewCell, ExpandableModel>.init(item: ExpandableModel(content: "첫번째 내용~")),
-				CollectionCellConfigurator<ExpandableCollectionViewCell, ExpandableModel>.init(item: ExpandableModel(content: "두번째 내용~"))
+				CollectionCellConfigurator<ExpandableCollectionViewCell, ExpandableModel>.init(item: ExpandableModel(content: "첫번째 섹션~")),
+				CollectionCellConfigurator<ExpandableCollectionViewCell, ExpandableModel>.init(item: ExpandableModel(content: "첫번째 섹션~"))
 			],
 			[
-				CollectionCellConfigurator<ExpandableCollectionViewCell, ExpandableModel>.init(item: ExpandableModel(content: "세번째 내용~"))
+				CollectionCellConfigurator<ExpandableCollectionViewCell, ExpandableModel>.init(item: ExpandableModel(content: "두번째 섹션~")),
+				CollectionCellConfigurator<ExpandableCollectionViewCell, ExpandableModel>.init(item: ExpandableModel(content: "두번째 섹션~")),
+				CollectionCellConfigurator<ExpandableCollectionViewCell, ExpandableModel>.init(item: ExpandableModel(content: "두번째 섹션~")),
+				CollectionCellConfigurator<ExpandableCollectionViewCell, ExpandableModel>.init(item: ExpandableModel(content: "두번째 섹션~")),
+				CollectionCellConfigurator<ExpandableCollectionViewCell, ExpandableModel>.init(item: ExpandableModel(content: "두번째 섹션~"))
 			]
 		]
 	}

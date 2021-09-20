@@ -80,3 +80,9 @@ extension ViewController: UICollectionViewDataSource {
 
 extension ViewController: UICollectionViewDelegate {
 }
+
+extension ViewController: ExpandableFooterViewDelegate {
+	func didTapFooter(isExpand: Bool) {
+		<#code#>
+	}
+}

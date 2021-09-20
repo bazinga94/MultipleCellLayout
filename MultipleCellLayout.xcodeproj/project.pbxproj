@@ -16,7 +16,7 @@
 		431F502326F4ED2900F1F36F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 431F502126F4ED2900F1F36F /* LaunchScreen.storyboard */; };
 		431F502E26F4ED2900F1F36F /* MultipleCellLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F502D26F4ED2900F1F36F /* MultipleCellLayoutTests.swift */; };
 		431F503926F4ED2A00F1F36F /* MultipleCellLayoutUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F503826F4ED2A00F1F36F /* MultipleCellLayoutUITests.swift */; };
-		431F504D26F4EE4800F1F36F /* ReusableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F504C26F4EE4800F1F36F /* ReusableType.swift */; };
+		431F504D26F4EE4800F1F36F /* ReusableCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F504C26F4EE4800F1F36F /* ReusableCellType.swift */; };
 		431F505526F4EE5700F1F36F /* ConfigurableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F505426F4EE5700F1F36F /* ConfigurableCell.swift */; };
 		431F505A26F4EE6F00F1F36F /* CellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F505926F4EE6F00F1F36F /* CellConfigurator.swift */; };
 		431F506226F4F14B00F1F36F /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F506126F4F14B00F1F36F /* Builder.swift */; };
@@ -26,6 +26,8 @@
 		431F508226F4F88400F1F36F /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F508126F4F88400F1F36F /* Dynamic.swift */; };
 		4373F83E26F8BB4D005560E1 /* ExpandableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4373F83D26F8BB4D005560E1 /* ExpandableHeaderView.swift */; };
 		4373F84326F8BB5C005560E1 /* ExpandableFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4373F84226F8BB5C005560E1 /* ExpandableFooterView.swift */; };
+		4373F84E26F8DAED005560E1 /* ReusableSectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4373F84D26F8DAED005560E1 /* ReusableSectionType.swift */; };
+		4373F85326F8DB2E005560E1 /* SectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4373F85226F8DB2E005560E1 /* SectionController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,7 +63,7 @@
 		431F503426F4ED2A00F1F36F /* MultipleCellLayoutUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MultipleCellLayoutUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		431F503826F4ED2A00F1F36F /* MultipleCellLayoutUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleCellLayoutUITests.swift; sourceTree = "<group>"; };
 		431F503A26F4ED2A00F1F36F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		431F504C26F4EE4800F1F36F /* ReusableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ReusableType.swift; path = ../../../ReusableType.swift; sourceTree = "<group>"; };
+		431F504C26F4EE4800F1F36F /* ReusableCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ReusableCellType.swift; path = ../../../ReusableCellType.swift; sourceTree = "<group>"; };
 		431F505426F4EE5700F1F36F /* ConfigurableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableCell.swift; sourceTree = "<group>"; };
 		431F505926F4EE6F00F1F36F /* CellConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellConfigurator.swift; sourceTree = "<group>"; };
 		431F506126F4F14B00F1F36F /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
@@ -71,6 +73,8 @@
 		431F508126F4F88400F1F36F /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
 		4373F83D26F8BB4D005560E1 /* ExpandableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableHeaderView.swift; sourceTree = "<group>"; };
 		4373F84226F8BB5C005560E1 /* ExpandableFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableFooterView.swift; sourceTree = "<group>"; };
+		4373F84D26F8DAED005560E1 /* ReusableSectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableSectionType.swift; sourceTree = "<group>"; };
+		4373F85226F8DB2E005560E1 /* SectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,9 +178,11 @@
 		431F504B26F4EE0A00F1F36F /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				431F504C26F4EE4800F1F36F /* ReusableType.swift */,
+				431F504C26F4EE4800F1F36F /* ReusableCellType.swift */,
+				4373F84D26F8DAED005560E1 /* ReusableSectionType.swift */,
 				431F505426F4EE5700F1F36F /* ConfigurableCell.swift */,
 				431F505926F4EE6F00F1F36F /* CellConfigurator.swift */,
+				4373F85226F8DB2E005560E1 /* SectionController.swift */,
 				431F506126F4F14B00F1F36F /* Builder.swift */,
 				431F508126F4F88400F1F36F /* Dynamic.swift */,
 			);
@@ -340,8 +346,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				431F505526F4EE5700F1F36F /* ConfigurableCell.swift in Sources */,
-				431F504D26F4EE4800F1F36F /* ReusableType.swift in Sources */,
+				431F504D26F4EE4800F1F36F /* ReusableCellType.swift in Sources */,
 				431F501826F4ED2600F1F36F /* ViewController.swift in Sources */,
+				4373F84E26F8DAED005560E1 /* ReusableSectionType.swift in Sources */,
 				431F507A26F4F85900F1F36F /* ViewModel.swift in Sources */,
 				431F507126F4F7F500F1F36F /* ExpandableModel.swift in Sources */,
 				431F501E26F4ED2600F1F36F /* MultipleCellLayout.xcdatamodeld in Sources */,
@@ -349,6 +356,7 @@
 				431F505A26F4EE6F00F1F36F /* CellConfigurator.swift in Sources */,
 				431F506726F4F18D00F1F36F /* ExpandableCollectionViewCell.swift in Sources */,
 				4373F84326F8BB5C005560E1 /* ExpandableFooterView.swift in Sources */,
+				4373F85326F8DB2E005560E1 /* SectionController.swift in Sources */,
 				4373F83E26F8BB4D005560E1 /* ExpandableHeaderView.swift in Sources */,
 				431F508226F4F88400F1F36F /* Dynamic.swift in Sources */,
 				431F501626F4ED2600F1F36F /* SceneDelegate.swift in Sources */,

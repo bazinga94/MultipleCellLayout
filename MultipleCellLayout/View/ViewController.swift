@@ -17,7 +17,7 @@ class ViewController: UIViewController {
 		.backgroundColor(.brown)
 		.showsVerticalScrollIndicator(false)
 		.apply({
-			CollectionCellConfigurator<ExpandableCollectionViewCell, ExpandableModel>.registerCellAsCustom(on: $0)
+			CellConfigurator<ExpandableCollectionViewCell, ExpandableModel>.registerCellAsCustom(on: $0)
 			$0.register(ExpandableHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "ExpandableHeaderView")
 			$0.register(ExpandableFooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "ExpandableFooterView")
 		})
@@ -83,6 +83,6 @@ extension ViewController: UICollectionViewDelegate {
 
 extension ViewController: ExpandableFooterViewDelegate {
 	func didTapFooter(isExpand: Bool) {
-		<#code#>
+		// reloadItems?
 	}
 }

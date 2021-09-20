@@ -17,7 +17,7 @@ protocol CellConfigurable {
 	func configure(cell: UIView)
 }
 
-class CellConfigurator<CellHolder: ReusableCellHolder>: CellConfigurable {
+class CellRegister<CellHolder: ReusableCellHolder>: CellConfigurable {
 
 	class var cellClass: AnyClass {		// override 가능
 		fatalError("Must be implemented by children")
@@ -42,7 +42,7 @@ class CellConfigurator<CellHolder: ReusableCellHolder>: CellConfigurable {
 	}
 }
 
-class CollectionCellConfigurator<Cell: ConfigurableCell & ReusableCell, DataType>: CellConfigurator<Cell.CellHolder> where Cell.DataType == DataType {
+class CellConfigurator<Cell: ConfigurableCell & ReusableCell, DataType>: CellRegister<Cell.CellHolder> where Cell.DataType == DataType {
 
 	final class override var cellClass: AnyClass {
 		return Cell.self

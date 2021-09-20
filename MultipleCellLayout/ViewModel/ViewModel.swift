@@ -9,20 +9,20 @@ import UIKit
 
 class ViewModel {
 
-	var items: Dynamic<[[CellConfigurator<UICollectionView>]]> = .init([])
+	var items: Dynamic<[[CellRegister<UICollectionView>]]> = .init([])
 
 	func fetch() {
 		items.value = [
 			[
-				CollectionCellConfigurator<ExpandableCollectionViewCell, ExpandableModel>.init(item: ExpandableModel(content: "첫번째 섹션~")),
-				CollectionCellConfigurator<ExpandableCollectionViewCell, ExpandableModel>.init(item: ExpandableModel(content: "첫번째 섹션~"))
+				CellConfigurator<ExpandableCollectionViewCell, ExpandableModel>.init(item: ExpandableModel(content: "첫번째 섹션~")),
+				CellConfigurator<ExpandableCollectionViewCell, ExpandableModel>.init(item: ExpandableModel(content: "첫번째 섹션~"))
 			],
 			[
-				CollectionCellConfigurator<ExpandableCollectionViewCell, ExpandableModel>.init(item: ExpandableModel(content: "두번째 섹션~")),
-				CollectionCellConfigurator<ExpandableCollectionViewCell, ExpandableModel>.init(item: ExpandableModel(content: "두번째 섹션~")),
-				CollectionCellConfigurator<ExpandableCollectionViewCell, ExpandableModel>.init(item: ExpandableModel(content: "두번째 섹션~")),
-				CollectionCellConfigurator<ExpandableCollectionViewCell, ExpandableModel>.init(item: ExpandableModel(content: "두번째 섹션~")),
-				CollectionCellConfigurator<ExpandableCollectionViewCell, ExpandableModel>.init(item: ExpandableModel(content: "두번째 섹션~"))
+				CellConfigurator<ExpandableCollectionViewCell, ExpandableModel>.init(item: ExpandableModel(content: "두번째 섹션~")),
+				CellConfigurator<ExpandableCollectionViewCell, ExpandableModel>.init(item: ExpandableModel(content: "두번째 섹션~")),
+				CellConfigurator<ExpandableCollectionViewCell, ExpandableModel>.init(item: ExpandableModel(content: "두번째 섹션~")),
+				CellConfigurator<ExpandableCollectionViewCell, ExpandableModel>.init(item: ExpandableModel(content: "두번째 섹션~")),
+				CellConfigurator<ExpandableCollectionViewCell, ExpandableModel>.init(item: ExpandableModel(content: "두번째 섹션~"))
 			]
 		]
 	}

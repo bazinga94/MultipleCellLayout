@@ -65,11 +65,9 @@ extension ViewController: UICollectionViewDataSource {
 
 	func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
 		if kind == UICollectionView.elementKindSectionHeader {	// 이 부분도 section configurator로 대체 할 수 있을지 확인
-			let view = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "ExpandableHeaderView", for: indexPath)
-			return view
+			return viewModel.sectionControllers.value[indexPath.section].collectionViewHeader(collectionView: collectionView, indexPath: indexPath, identifier: SectionRegister<ExpandableHeaderView, UICollectionView>.sectionIdentifier)
 		} else {
-			let view = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "ExpandableFooterView", for: indexPath)
-			return view
+			return viewModel.sectionControllers.value[indexPath.section].collectionViewFooter(collectionView: collectionView, indexPath: indexPath, identifier: SectionRegister<ExpandableFooterView, UICollectionView>.sectionIdentifier)
 		}
 	}
 }

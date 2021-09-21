@@ -21,6 +21,8 @@ protocol SectionControllerable {
 	var rowCount: Int { get }
 	func collectionViewCell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell
 	func collectionViewCellSize(collectionView: UICollectionView, indexPath: IndexPath) -> CGSize
+	func collectionViewHeader(collectionView: UICollectionView, indexPath: IndexPath, identifier: String) -> UICollectionReusableView
+	func collectionViewFooter(collectionView: UICollectionView, indexPath: IndexPath, identifier: String) -> UICollectionReusableView
 }
 
 class SectionController<DataType: IterableSectionValue>: SectionControllerable {
@@ -48,5 +50,13 @@ class SectionController<DataType: IterableSectionValue>: SectionControllerable {
 
 	func collectionViewCellSize(collectionView: UICollectionView, indexPath: IndexPath) -> CGSize {
 		return CGSize(width: collectionView.bounds.width, height: 80)	// 임시
+	}
+
+	func collectionViewHeader(collectionView: UICollectionView, indexPath: IndexPath, identifier: String) -> UICollectionReusableView {
+		return collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: identifier, for: indexPath)
+	}
+
+	func collectionViewFooter(collectionView: UICollectionView, indexPath: IndexPath, identifier: String) -> UICollectionReusableView {
+		return collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: identifier, for: indexPath)
 	}
 }

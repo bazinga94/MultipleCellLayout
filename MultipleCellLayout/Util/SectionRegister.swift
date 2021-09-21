@@ -1,5 +1,5 @@
 //
-//  SectionController.swift
+//  SectionRegister.swift
 //  MultipleCellLayout
 //
 //  Created by Jongho Lee on 2021/09/21.

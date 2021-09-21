@@ -19,7 +19,7 @@ class ExpandableCollectionViewCell: UICollectionViewCell, ConfigurableCell {
 		contentLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor)
 	]
 
-	func configure(data: ExpandableModel) {
+	func configure(data: ExpandableRowModel) {
 		contentLabel.text = data.content
 	}
 

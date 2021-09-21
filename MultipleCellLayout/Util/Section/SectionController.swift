@@ -8,15 +8,14 @@
 import UIKit
 
 protocol IterableSectionValue {
-	associatedtype Model: CellConfigurable
-
-	var items: [Model] { get set }
+//	associatedtype Model: CellConfigurable
+	var items: [CellConfigurable] { get set }
 }
 
 protocol SectionControllerable {
-	associatedtype Model: IterableSectionValue
+//	associatedtype Model: IterableSectionValue
 
-	init(model: Model)
+//	init(model: Model)
 
 //	var model: Dynamic<Model> { get set }
 	var rowCount: Int { get }

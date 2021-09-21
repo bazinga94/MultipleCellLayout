@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol SectionControllerType {
+protocol SectionRegisterable {
 	associatedtype SectionHolder: SectionViewHolder//, ReusableCellHolder
 
 	static func registerHeaderAsXib(on sectionViewHolder: SectionHolder)
@@ -16,14 +16,14 @@ protocol SectionControllerType {
 	static func registerFooterAsCustom(on sectionViewHolder: SectionHolder)
 }
 
-// collection view 한정임...
-class SectionController<SectionHolder: SectionViewHolder>: SectionControllerType {
+// collection view 한정임
+class SectionRegister<Section: SectionView, SectionHolder: SectionViewHolder>: SectionRegisterable {
 
-	class var sectionClass: AnyClass {
-		fatalError("Must be implemented by children")
+	final class var sectionClass: AnyClass {
+		return Section.self
 	}
 
-	static var sectionIdentifier: String {
+	final class var sectionIdentifier: String {
 		return String(describing: sectionClass)
 	}
 
@@ -47,3 +47,11 @@ class SectionController<SectionHolder: SectionViewHolder>: SectionControllerType
 		sectionViewHolder.register(sectionClass, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: sectionIdentifier)
 	}
 }
+
+// section에는 header, footer가 각각 있어서 generic 하게 사용하진 못 할듯..
+//class SectionConfigurator<Section: SectionView>: SectionRegister<Section.SectionHolder> {
+//
+//	final class override var sectionClass: AnyClass {
+//		return Section.self
+//	}
+//}

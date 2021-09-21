@@ -18,8 +18,10 @@ class ViewController: UIViewController {
 		.showsVerticalScrollIndicator(false)
 		.apply({
 			CellConfigurator<ExpandableCollectionViewCell, ExpandableModel>.registerCellAsCustom(on: $0)
-			$0.register(ExpandableHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "ExpandableHeaderView")
-			$0.register(ExpandableFooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "ExpandableFooterView")
+			SectionRegister<ExpandableHeaderView, UICollectionView>.registerHeaderAsCustom(on: $0)
+			SectionRegister<ExpandableFooterView, UICollectionView>.registerFooterAsCustom(on: $0)
+//			$0.register(ExpandableHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "ExpandableHeaderView")
+//			$0.register(ExpandableFooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "ExpandableFooterView")
 		})
 		.build()
 
@@ -68,7 +70,7 @@ extension ViewController: UICollectionViewDataSource {
 	}
 
 	func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-		if kind == UICollectionView.elementKindSectionHeader {
+		if kind == UICollectionView.elementKindSectionHeader {	// 이 부분도 section configurator로 대체 할 수 있을지 확인
 			let view = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "ExpandableHeaderView", for: indexPath)
 			return view
 		} else {

@@ -17,7 +17,7 @@ class ViewController: UIViewController {
 		.backgroundColor(.brown)
 		.showsVerticalScrollIndicator(false)
 		.apply({
-			CellConfigurator<ExpandableCollectionViewCell, ExpandableRowModel>.registerCellAsCustom(on: $0)
+			CellRegister<ExpandableCollectionViewCell, UICollectionView>.registerCellAsCustom(on: $0)
 			SectionRegister<ExpandableHeaderView, UICollectionView>.registerHeaderAsCustom(on: $0)
 			SectionRegister<ExpandableFooterView, UICollectionView>.registerFooterAsCustom(on: $0)
 		})

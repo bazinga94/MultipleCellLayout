@@ -15,8 +15,6 @@ class ViewModel {
 		var row: [String]
 	}
 
-	var items: Dynamic<[[CellRegister<UICollectionView>]]> = .init([])
-
 	var sectionControllers: Dynamic<[SectionControllerable]> = .init([])
 
 	func fetch() {

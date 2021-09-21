@@ -47,6 +47,6 @@ class SectionController<DataType: IterableSectionValue>: SectionControllerable {
 	}
 
 	func collectionViewCellSize(collectionView: UICollectionView, indexPath: IndexPath) -> CGSize {
-		return CGSize(width: collectionView.bounds.width, height: 80)
+		return CGSize(width: collectionView.bounds.width, height: 80)	// 임시
 	}
 }

@@ -20,8 +20,6 @@ class ViewController: UIViewController {
 			CellConfigurator<ExpandableCollectionViewCell, ExpandableRowModel>.registerCellAsCustom(on: $0)
 			SectionRegister<ExpandableHeaderView, UICollectionView>.registerHeaderAsCustom(on: $0)
 			SectionRegister<ExpandableFooterView, UICollectionView>.registerFooterAsCustom(on: $0)
-//			$0.register(ExpandableHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "ExpandableHeaderView")
-//			$0.register(ExpandableFooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "ExpandableFooterView")
 		})
 		.build()
 
@@ -54,19 +52,15 @@ class ViewController: UIViewController {
 
 extension ViewController: UICollectionViewDataSource {
 	func numberOfSections(in collectionView: UICollectionView) -> Int {
-		return self.viewModel.items.value.count
+		return self.viewModel.sectionControllers.value.count
 	}
 
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return self.viewModel.items.value[section].count
+		return self.viewModel.sectionControllers.value[section].rowCount
 	}
 
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		let configurator = self.viewModel.items.value[indexPath.section][indexPath.row]
-		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: type(of: configurator).cellIdentifier, for: indexPath)
-		configurator.configure(cell: cell)
-
-		return cell
+		return self.viewModel.sectionControllers.value[indexPath.section].collectionViewCell(collectionView: collectionView, indexPath: indexPath)
 	}
 
 	func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {

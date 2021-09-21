@@ -12,6 +12,8 @@ protocol CellConfigurable {
 //	associatedtype Cell: ConfigurableCell
 //	associatedtype Cell: ReusableCell
 
+	static var cellIdentifier: String { get }
+
 	static func registerCellAsXib(on reusableCellHolder: CellHolder)
 	static func registerCellAsCustom(on reusableCellHolder: CellHolder)
 	func configure(cell: UIView)

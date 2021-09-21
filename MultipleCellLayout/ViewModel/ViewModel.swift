@@ -31,7 +31,7 @@ class ViewModel {
 				CellConfigurator<ExpandableCollectionViewCell, ExpandableRowModel>.init(item: ExpandableRowModel(content: $0))
 			}
 
-			return SectionController<ExpandableSectionModel>.init(model: ExpandableSectionModel(headerTitle: $0.header, footerTitle: $0.footer, items: cellConfigurators))
+			return SectionController<ExpandableSectionModel>.init(model: ExpandableSectionModel(headerItem: $0.header, footerItem: $0.footer, items: cellConfigurators))
 		}
 	}
 }

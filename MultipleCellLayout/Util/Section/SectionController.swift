@@ -7,6 +7,16 @@
 
 import UIKit
 
+protocol HeaderValue {
+	associatedtype Model
+	var headerItem: Model { get set }
+}
+
+protocol FooterValue {
+	associatedtype Model
+	var footerItem: Model { get set }
+}
+
 protocol IterableSectionValue {
 //	associatedtype Model: CellConfigurable
 	var items: [CellConfigurable] { get set }
@@ -25,7 +35,7 @@ protocol SectionControllerable {
 	func collectionViewFooter(collectionView: UICollectionView, indexPath: IndexPath, identifier: String) -> UICollectionReusableView
 }
 
-class SectionController<DataType: IterableSectionValue>: SectionControllerable {
+class SectionController<DataType: IterableSectionValue & HeaderValue & FooterValue>: SectionControllerable {
 
 	var rowCount: Int {
 		return model.value.items.count
@@ -53,7 +63,9 @@ class SectionController<DataType: IterableSectionValue>: SectionControllerable {
 	}
 
 	func collectionViewHeader(collectionView: UICollectionView, indexPath: IndexPath, identifier: String) -> UICollectionReusableView {
-		return collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: identifier, for: indexPath)
+		guard let view = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: identifier, for: indexPath) as? ExpandableHeaderView else { return UICollectionReusableView() }
+		view.configure(model: model.value)
+		return view
 	}
 
 	func collectionViewFooter(collectionView: UICollectionView, indexPath: IndexPath, identifier: String) -> UICollectionReusableView {

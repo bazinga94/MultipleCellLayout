@@ -64,7 +64,7 @@ class SectionController<DataType: IterableSectionValue & HeaderValue & FooterVal
 
 	func collectionViewHeader(collectionView: UICollectionView, indexPath: IndexPath, identifier: String) -> UICollectionReusableView {
 		guard let view = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: identifier, for: indexPath) as? ExpandableHeaderView else { return UICollectionReusableView() }
-		view.configure(model: model.value)
+//		view.configure(model: model.value)	// Header 나 Footer를 configure 할 모델을 Generic으로 받아야 할까?
 		return view
 	}
 

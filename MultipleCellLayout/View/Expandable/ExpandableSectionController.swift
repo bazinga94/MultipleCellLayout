@@ -7,21 +7,41 @@
 
 import UIKit
 
+protocol ExpandableSectionDelegate: class {
+	func sectionReload(isExpand: Bool, section: Int)
+}
+
 class ExpandableSectionController: SectionControllerable {
 
+	private var section: Int
+
 	var rowCount: Int {
-		return model.value.items.count
+		return _rowCount
+	}
+
+	private var _rowCount: Int = 0
+
+	private var isExpand: Bool {
+		didSet {
+			if isExpand {
+				_rowCount = model.value.items.count
+			} else {
+				_rowCount = 0
+			}
+		}
 	}
 
 	internal var model: Dynamic<ExpandableSectionModel>
 
-	weak var delegate: ExpandableFooterViewDelegate?
+	weak var delegate: ExpandableSectionDelegate?
 
-	required init(model: ExpandableSectionModel) {
+	required init(model: ExpandableSectionModel, section: Int) {
 		self.model = .init(model)
 		self.model.bind { model in
 			// reload
 		}
+		self.section = section
+		self.isExpand = true
 	}
 
 	func collectionViewCell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
@@ -45,9 +65,14 @@ class ExpandableSectionController: SectionControllerable {
 	func collectionViewFooter(collectionView: UICollectionView, indexPath: IndexPath, identifier: String) -> UICollectionReusableView {
 		guard let view = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: identifier, for: indexPath) as? ExpandableFooterView else { return UICollectionReusableView() }
 			view.configure(model: model.value)
-		view.delegate = delegate
+		view.delegate = self
 		return view
 	}
-
 }
 
+extension ExpandableSectionController: ExpandableFooterViewDelegate {
+	func didTapFooter(isExpand: Bool) {
+		self.isExpand = isExpand
+		delegate?.sectionReload(isExpand: isExpand, section: section)
+	}
+}

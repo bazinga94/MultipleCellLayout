@@ -75,8 +75,9 @@ extension ViewController: UICollectionViewDataSource {
 extension ViewController: UICollectionViewDelegate {
 }
 
-extension ViewController: ExpandableFooterViewDelegate {
-	func didTapFooter(isExpand: Bool) {
-		// reloadItems?
+extension ViewController: ExpandableSectionDelegate {
+	func sectionReload(isExpand: Bool, section: Int) {
+		let indexSet = IndexSet(integer: section)
+		collectionView.reloadSections(indexSet)
 	}
 }

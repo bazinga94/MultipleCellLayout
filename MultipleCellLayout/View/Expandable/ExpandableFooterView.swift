@@ -38,7 +38,8 @@ class ExpandableFooterView: UICollectionReusableView {
 	}
 
 	@objc func didTapFooter(sender: UIButton) {
-		delegate?.didTapFooter(isExpand: !isExpand)
+		self.isExpand = !isExpand
+		delegate?.didTapFooter(isExpand: isExpand)
 	}
 
 	required init?(coder: NSCoder) {

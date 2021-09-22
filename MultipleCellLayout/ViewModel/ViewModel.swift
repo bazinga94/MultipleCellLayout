@@ -17,7 +17,7 @@ class ViewModel {
 
 	var sectionControllers: Dynamic<[SectionControllerable]> = .init([])
 
-	func fetch(delegate: ExpandableFooterViewDelegate) {
+	func fetch(delegate: ExpandableSectionDelegate) {
 
 		let responses: [Response] = [
 			Response(header: "H 1", footer: "F 1", row: ["1", "2"]),
@@ -25,13 +25,13 @@ class ViewModel {
 			Response(header: "H 3", footer: "F 3", row: ["1", "2", "3"]),
 		]
 
-		sectionControllers.value = responses.map {
+		sectionControllers.value = responses.enumerated().map { (index, response) in
 
-			let cellConfigurators = $0.row.map {
+			let cellConfigurators = response.row.map {
 				CellConfigurator<ExpandableCollectionViewCell, ExpandableRowModel>.init(item: ExpandableRowModel(content: $0))
 			}
 
-			let expandableSectionController = ExpandableSectionController.init(model: ExpandableSectionModel(headerItem: $0.header, footerItem: $0.footer, items: cellConfigurators))
+			let expandableSectionController = ExpandableSectionController.init(model: ExpandableSectionModel(headerItem: response.header, footerItem: response.footer, items: cellConfigurators), section: index)
 
 			expandableSectionController.delegate = delegate
 

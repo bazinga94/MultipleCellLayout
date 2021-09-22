@@ -22,6 +22,11 @@ class ExpandableFooterView: UICollectionReusableView {
 		.translatesAutoresizingMaskIntoConstraints(false)
 		.build()
 
+	lazy var footerLabel: UILabel = UILabel()
+		.builder
+		.translatesAutoresizingMaskIntoConstraints(false)
+		.build()
+
 	lazy var footerButtonConstraints = [
 		footerButton.leadingAnchor.constraint(equalTo: self.leadingAnchor),
 		footerButton.trailingAnchor.constraint(equalTo: self.trailingAnchor),
@@ -29,11 +34,17 @@ class ExpandableFooterView: UICollectionReusableView {
 		footerButton.bottomAnchor.constraint(equalTo: self.bottomAnchor)
 	]
 
+	lazy var footerLabelConstraints = [
+		footerLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+		footerLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 5)
+	]
+
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		self.backgroundColor = .red
 		self.addSubview(footerButton)
-		NSLayoutConstraint.activate(footerButtonConstraints)
+		self.addSubview(footerLabel)
+		NSLayoutConstraint.activate(footerButtonConstraints + footerLabelConstraints)
 		footerButton.addTarget(self, action: #selector(didTapFooter(sender:)), for: .touchUpInside)
 	}
 
@@ -47,6 +58,6 @@ class ExpandableFooterView: UICollectionReusableView {
 	}
 
 	func configure(model: ExpandableSectionModel) {
-
+		footerLabel.text = model.footerItem
 	}
 }

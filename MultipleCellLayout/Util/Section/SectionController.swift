@@ -16,6 +16,7 @@ protocol FooterValue {
 	associatedtype Model
 	var footerItem: Model { get set }
 }
+// 위에 두개는 option...
 
 protocol IterableSectionValue {
 //	associatedtype Model: CellConfigurable
@@ -28,27 +29,51 @@ protocol SectionControllerable {
 //	init(model: Model)
 
 //	var model: Dynamic<Model> { get set }
+
+//	init(model: IterableSectionValue)
+
+//	var model: Dynamic<IterableSectionValue> { get set }
+
 	var rowCount: Int { get }
+
 	func collectionViewCell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell
 	func collectionViewCellSize(collectionView: UICollectionView, indexPath: IndexPath) -> CGSize
 	func collectionViewHeader(collectionView: UICollectionView, indexPath: IndexPath, identifier: String) -> UICollectionReusableView
 	func collectionViewFooter(collectionView: UICollectionView, indexPath: IndexPath, identifier: String) -> UICollectionReusableView
 }
 
+extension SectionControllerable {
+//	func collectionViewCell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
+//		let configurator = self.model.value.items[indexPath.row]
+//		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: type(of: configurator).cellIdentifier, for: indexPath)
+//		configurator.configure(cell: cell)
+//
+//		return cell
+//	}
+}
+
+// Sample!! 프로토콜을 상속 받게 하자~
 class SectionController<DataType: IterableSectionValue & HeaderValue & FooterValue>: SectionControllerable {
+
+	required init(model: IterableSectionValue) {
+		self.model = .init(model)
+	}
+
+	var model: Dynamic<IterableSectionValue>
+
 
 	var rowCount: Int {
 		return model.value.items.count
 	}
 
-	private var model: Dynamic<DataType>
-
-	required init(model: DataType) {
-		self.model = .init(model)
-		self.model.bind { model in
-			// reload
-		}
-	}
+//	internal var model: Dynamic<DataType>
+//
+//	required init(model: DataType) {
+//		self.model = .init(model)
+//		self.model.bind { model in
+//			// reload
+//		}
+//	}
 
 	func collectionViewCell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
 		let configurator = self.model.value.items[indexPath.row]
@@ -63,9 +88,7 @@ class SectionController<DataType: IterableSectionValue & HeaderValue & FooterVal
 	}
 
 	func collectionViewHeader(collectionView: UICollectionView, indexPath: IndexPath, identifier: String) -> UICollectionReusableView {
-		guard let view = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: identifier, for: indexPath) as? ExpandableHeaderView else { return UICollectionReusableView() }
-//		view.configure(model: model.value)	// Header 나 Footer를 configure 할 모델을 Generic으로 받아야 할까?
-		return view
+		return collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: identifier, for: indexPath)
 	}
 
 	func collectionViewFooter(collectionView: UICollectionView, indexPath: IndexPath, identifier: String) -> UICollectionReusableView {

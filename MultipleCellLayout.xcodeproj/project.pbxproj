@@ -30,6 +30,7 @@
 		437579EE26F9898B00215788 /* ReusableCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437579ED26F9898B00215788 /* ReusableCellType.swift */; };
 		437579FC26FA04A600215788 /* SectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437579FB26FA04A600215788 /* SectionController.swift */; };
 		437B583D26FA3A2400F0935F /* CellRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437B583C26FA3A2400F0935F /* CellRegister.swift */; };
+		437B584526FB5F4B00F0935F /* ExpandableSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437B584426FB5F4B00F0935F /* ExpandableSectionController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		437579ED26F9898B00215788 /* ReusableCellType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableCellType.swift; sourceTree = "<group>"; };
 		437579FB26FA04A600215788 /* SectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionController.swift; sourceTree = "<group>"; };
 		437B583C26FA3A2400F0935F /* CellRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellRegister.swift; sourceTree = "<group>"; };
+		437B584426FB5F4B00F0935F /* ExpandableSectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableSectionController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +198,7 @@
 				431F506626F4F18D00F1F36F /* ExpandableCollectionViewCell.swift */,
 				4373F83D26F8BB4D005560E1 /* ExpandableHeaderView.swift */,
 				4373F84226F8BB5C005560E1 /* ExpandableFooterView.swift */,
+				437B584426FB5F4B00F0935F /* ExpandableSectionController.swift */,
 			);
 			path = Expandable;
 			sourceTree = "<group>";
@@ -384,6 +387,7 @@
 				4373F83E26F8BB4D005560E1 /* ExpandableHeaderView.swift in Sources */,
 				431F508226F4F88400F1F36F /* Dynamic.swift in Sources */,
 				431F501626F4ED2600F1F36F /* SceneDelegate.swift in Sources */,
+				437B584526FB5F4B00F0935F /* ExpandableSectionController.swift in Sources */,
 				431F506226F4F14B00F1F36F /* Builder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

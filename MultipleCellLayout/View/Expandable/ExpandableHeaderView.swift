@@ -18,7 +18,7 @@ class ExpandableHeaderView: UICollectionReusableView {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-	func configure(model: Dynamic<ExpandableSectionModel>) {
+	func configure(model: ExpandableSectionModel) {
 		
 	}
 }

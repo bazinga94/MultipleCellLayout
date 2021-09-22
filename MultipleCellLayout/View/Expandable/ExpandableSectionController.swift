@@ -41,7 +41,7 @@ class ExpandableSectionController: SectionControllerable {
 			// reload
 		}
 		self.section = section
-		self.isExpand = true
+		self.isExpand = false
 	}
 
 	func collectionViewCell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
@@ -66,6 +66,7 @@ class ExpandableSectionController: SectionControllerable {
 		guard let view = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: identifier, for: indexPath) as? ExpandableFooterView else { return UICollectionReusableView() }
 			view.configure(model: model.value)
 		view.delegate = self
+		view.isExpand = isExpand
 		return view
 	}
 }

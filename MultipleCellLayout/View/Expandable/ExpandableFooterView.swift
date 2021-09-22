@@ -13,7 +13,7 @@ protocol ExpandableFooterViewDelegate: class {
 
 class ExpandableFooterView: UICollectionReusableView {
 
-	private var isExpand: Bool = true
+	var isExpand: Bool = true
 
 	weak var delegate: ExpandableFooterViewDelegate?
 

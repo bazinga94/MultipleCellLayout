@@ -17,7 +17,7 @@ class ViewModel {
 
 	var sectionControllers: Dynamic<[SectionControllerable]> = .init([])
 
-	func fetch() {
+	func fetch(delegate: ExpandableFooterViewDelegate) {
 
 		let responses: [Response] = [
 			Response(header: "H 1", footer: "F 1", row: ["1", "2"]),
@@ -31,8 +31,13 @@ class ViewModel {
 				CellConfigurator<ExpandableCollectionViewCell, ExpandableRowModel>.init(item: ExpandableRowModel(content: $0))
 			}
 
+			let expandableSectionController = ExpandableSectionController.init(model: ExpandableSectionModel(headerItem: $0.header, footerItem: $0.footer, items: cellConfigurators))
+
+			expandableSectionController.delegate = delegate
+
+			return expandableSectionController
+
 //			return SectionController<ExpandableSectionModel>.init(model: ExpandableSectionModel(headerItem: $0.header, footerItem: $0.footer, items: cellConfigurators))
-			return ExpandableSectionController.init(model: ExpandableSectionModel(headerItem: $0.header, footerItem: $0.footer, items: cellConfigurators))
 		}
 	}
 }

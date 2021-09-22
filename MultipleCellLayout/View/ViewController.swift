@@ -46,7 +46,7 @@ class ViewController: UIViewController {
 		super.viewDidLoad()
 		self.view.addSubview(collectionView)
 		NSLayoutConstraint.activate(collectionViewContraints)
-		viewModel.fetch()
+		viewModel.fetch(delegate: self)
 	}
 }
 

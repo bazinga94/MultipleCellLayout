@@ -15,6 +15,8 @@ class ExpandableSectionController: SectionControllerable {
 
 	internal var model: Dynamic<ExpandableSectionModel>
 
+	weak var delegate: ExpandableFooterViewDelegate?
+
 	required init(model: ExpandableSectionModel) {
 		self.model = .init(model)
 		self.model.bind { model in
@@ -36,13 +38,14 @@ class ExpandableSectionController: SectionControllerable {
 
 	func collectionViewHeader(collectionView: UICollectionView, indexPath: IndexPath, identifier: String) -> UICollectionReusableView {
 		guard let view = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: identifier, for: indexPath) as? ExpandableHeaderView else { return UICollectionReusableView() }
-		view.configure(model: model.value)	// Header 나 Footer를 configure 할 모델을 Generic으로 받아야 할까?
+		view.configure(model: model.value)
 		return view
 	}
 
 	func collectionViewFooter(collectionView: UICollectionView, indexPath: IndexPath, identifier: String) -> UICollectionReusableView {
 		guard let view = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: identifier, for: indexPath) as? ExpandableFooterView else { return UICollectionReusableView() }
-			view.configure(model: model.value)	// Header 나 Footer를 configure 할 모델을 Generic으로 받아야 할까?
+			view.configure(model: model.value)
+		view.delegate = delegate
 		return view
 	}
 

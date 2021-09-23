@@ -38,8 +38,10 @@ protocol SectionControllerable {
 
 	func collectionViewCell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell
 	func collectionViewCellSize(collectionView: UICollectionView, indexPath: IndexPath) -> CGSize
-	func collectionViewHeader(collectionView: UICollectionView, indexPath: IndexPath, identifier: String) -> UICollectionReusableView
-	func collectionViewFooter(collectionView: UICollectionView, indexPath: IndexPath, identifier: String) -> UICollectionReusableView
+	func collectionViewHeader(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionReusableView
+	func collectionViewHeaderSize(collectionView: UICollectionView) -> CGSize
+	func collectionViewFooter(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionReusableView
+	func collectionViewFooterSize(collectionView: UICollectionView) -> CGSize
 }
 
 extension SectionControllerable {
@@ -87,11 +89,19 @@ class SectionController<DataType: IterableSectionValue & HeaderValue & FooterVal
 		return CGSize(width: collectionView.bounds.width, height: 80)	// 임시
 	}
 
-	func collectionViewHeader(collectionView: UICollectionView, indexPath: IndexPath, identifier: String) -> UICollectionReusableView {
-		return collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: identifier, for: indexPath)
+	func collectionViewHeader(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionReusableView {
+		return collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "identifier", for: indexPath)
 	}
 
-	func collectionViewFooter(collectionView: UICollectionView, indexPath: IndexPath, identifier: String) -> UICollectionReusableView {
-		return collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: identifier, for: indexPath)
+	func collectionViewFooter(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionReusableView {
+		return collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "identifier", for: indexPath)
+	}
+
+	func collectionViewHeaderSize(collectionView: UICollectionView) -> CGSize {
+		return CGSize(width: collectionView.bounds.width, height: 60)
+	}
+
+	func collectionViewFooterSize(collectionView: UICollectionView) -> CGSize {
+		return CGSize(width: collectionView.bounds.width, height: 60)
 	}
 }

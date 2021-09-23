@@ -20,6 +20,9 @@ class ViewController: UIViewController {
 			CellRegister<ExpandableCollectionViewCell, UICollectionView>.registerCellAsCustom(on: $0)
 			SectionRegister<ExpandableHeaderView, UICollectionView>.registerHeaderAsCustom(on: $0)
 			SectionRegister<ExpandableFooterView, UICollectionView>.registerFooterAsCustom(on: $0)
+			CellRegister<GridCollectionViewCell, UICollectionView>.registerCellAsCustom(on: $0)
+			SectionRegister<GridHeaderView, UICollectionView>.registerHeaderAsCustom(on: $0)
+			SectionRegister<GridFooterView, UICollectionView>.registerFooterAsCustom(on: $0)
 		})
 		.build()
 
@@ -65,10 +68,24 @@ extension ViewController: UICollectionViewDataSource {
 
 	func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
 		if kind == UICollectionView.elementKindSectionHeader {	// 이 부분도 section configurator로 대체 할 수 있을지 확인
-			return viewModel.sectionControllers.value[indexPath.section].collectionViewHeader(collectionView: collectionView, indexPath: indexPath, identifier: SectionRegister<ExpandableHeaderView, UICollectionView>.sectionIdentifier)
+			return viewModel.sectionControllers.value[indexPath.section].collectionViewHeader(collectionView: collectionView, indexPath: indexPath)
 		} else {
-			return viewModel.sectionControllers.value[indexPath.section].collectionViewFooter(collectionView: collectionView, indexPath: indexPath, identifier: SectionRegister<ExpandableFooterView, UICollectionView>.sectionIdentifier)
-		}
+			return viewModel.sectionControllers.value[indexPath.section].collectionViewFooter(collectionView: collectionView, indexPath: indexPath)
+		}	// header, footer 관리 어떻게?
+	}
+}
+
+extension ViewController: UICollectionViewDelegateFlowLayout {
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+		return viewModel.sectionControllers.value[indexPath.section].collectionViewCellSize(collectionView: collectionView, indexPath: indexPath)
+	}
+
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+		return viewModel.sectionControllers.value[section].collectionViewHeaderSize(collectionView: collectionView)
+	}
+
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+		return viewModel.sectionControllers.value[section].collectionViewFooterSize(collectionView: collectionView)
 	}
 }
 

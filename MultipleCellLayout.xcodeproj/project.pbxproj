@@ -31,6 +31,11 @@
 		437579FC26FA04A600215788 /* SectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437579FB26FA04A600215788 /* SectionController.swift */; };
 		437B583D26FA3A2400F0935F /* CellRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437B583C26FA3A2400F0935F /* CellRegister.swift */; };
 		437B584526FB5F4B00F0935F /* ExpandableSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437B584426FB5F4B00F0935F /* ExpandableSectionController.swift */; };
+		B233C5B326FBFB6300FBC58E /* GridCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B233C5B226FBFB6300FBC58E /* GridCollectionViewCell.swift */; };
+		B233C5B826FBFBC600FBC58E /* GridModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B233C5B726FBFBC600FBC58E /* GridModel.swift */; };
+		B233C5BD26FBFD4000FBC58E /* GridSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B233C5BC26FBFD4000FBC58E /* GridSectionController.swift */; };
+		B233C5CA26FC0A2000FBC58E /* GridHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B233C5C926FC0A2000FBC58E /* GridHeaderView.swift */; };
+		B233C5CF26FC0A3200FBC58E /* GridFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B233C5CE26FC0A3200FBC58E /* GridFooterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +86,11 @@
 		437579FB26FA04A600215788 /* SectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionController.swift; sourceTree = "<group>"; };
 		437B583C26FA3A2400F0935F /* CellRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellRegister.swift; sourceTree = "<group>"; };
 		437B584426FB5F4B00F0935F /* ExpandableSectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableSectionController.swift; sourceTree = "<group>"; };
+		B233C5B226FBFB6300FBC58E /* GridCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridCollectionViewCell.swift; sourceTree = "<group>"; };
+		B233C5B726FBFBC600FBC58E /* GridModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridModel.swift; sourceTree = "<group>"; };
+		B233C5BC26FBFD4000FBC58E /* GridSectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridSectionController.swift; sourceTree = "<group>"; };
+		B233C5C926FC0A2000FBC58E /* GridHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridHeaderView.swift; sourceTree = "<group>"; };
+		B233C5CE26FC0A3200FBC58E /* GridFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridFooterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +185,7 @@
 		431F504A26F4EE0100F1F36F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B233C5B126FBFB5400FBC58E /* Grid */,
 				431F506B26F4F19900F1F36F /* Expandable */,
 				431F501726F4ED2600F1F36F /* ViewController.swift */,
 			);
@@ -207,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				431F507026F4F7F500F1F36F /* ExpandableModel.swift */,
+				B233C5B726FBFBC600FBC58E /* GridModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -238,6 +250,17 @@
 				437579FB26FA04A600215788 /* SectionController.swift */,
 			);
 			path = Section;
+			sourceTree = "<group>";
+		};
+		B233C5B126FBFB5400FBC58E /* Grid */ = {
+			isa = PBXGroup;
+			children = (
+				B233C5B226FBFB6300FBC58E /* GridCollectionViewCell.swift */,
+				B233C5C926FC0A2000FBC58E /* GridHeaderView.swift */,
+				B233C5CE26FC0A3200FBC58E /* GridFooterView.swift */,
+				B233C5BC26FBFD4000FBC58E /* GridSectionController.swift */,
+			);
+			path = Grid;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -374,9 +397,12 @@
 				431F501826F4ED2600F1F36F /* ViewController.swift in Sources */,
 				4373F84E26F8DAED005560E1 /* ReusableSectionType.swift in Sources */,
 				431F507A26F4F85900F1F36F /* ViewModel.swift in Sources */,
+				B233C5B326FBFB6300FBC58E /* GridCollectionViewCell.swift in Sources */,
 				431F507126F4F7F500F1F36F /* ExpandableModel.swift in Sources */,
 				437579FC26FA04A600215788 /* SectionController.swift in Sources */,
+				B233C5BD26FBFD4000FBC58E /* GridSectionController.swift in Sources */,
 				431F501E26F4ED2600F1F36F /* MultipleCellLayout.xcdatamodeld in Sources */,
+				B233C5B826FBFBC600FBC58E /* GridModel.swift in Sources */,
 				431F501426F4ED2600F1F36F /* AppDelegate.swift in Sources */,
 				437B583D26FA3A2400F0935F /* CellRegister.swift in Sources */,
 				437579EE26F9898B00215788 /* ReusableCellType.swift in Sources */,
@@ -388,7 +414,9 @@
 				431F508226F4F88400F1F36F /* Dynamic.swift in Sources */,
 				431F501626F4ED2600F1F36F /* SceneDelegate.swift in Sources */,
 				437B584526FB5F4B00F0935F /* ExpandableSectionController.swift in Sources */,
+				B233C5CA26FC0A2000FBC58E /* GridHeaderView.swift in Sources */,
 				431F506226F4F14B00F1F36F /* Builder.swift in Sources */,
+				B233C5CF26FC0A3200FBC58E /* GridFooterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

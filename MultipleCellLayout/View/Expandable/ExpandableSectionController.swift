@@ -31,11 +31,11 @@ class ExpandableSectionController: SectionControllerable {
 		}
 	}
 
-	internal var model: Dynamic<ExpandableSectionModel>
+	private var model: Dynamic<ExpandableSectionModel>
 
 	weak var delegate: ExpandableSectionDelegate?
 
-	required init(model: ExpandableSectionModel, section: Int) {
+	init(model: ExpandableSectionModel, section: Int) {
 		self.model = .init(model)
 		self.model.bind { model in
 			// reload
@@ -56,18 +56,26 @@ class ExpandableSectionController: SectionControllerable {
 		return CGSize(width: collectionView.bounds.width, height: 80)
 	}
 
-	func collectionViewHeader(collectionView: UICollectionView, indexPath: IndexPath, identifier: String) -> UICollectionReusableView {
-		guard let view = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: identifier, for: indexPath) as? ExpandableHeaderView else { return UICollectionReusableView() }
+	func collectionViewHeader(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionReusableView {
+		guard let view = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionRegister<ExpandableHeaderView, UICollectionView>.sectionIdentifier, for: indexPath) as? ExpandableHeaderView else { return UICollectionReusableView() }
 		view.configure(model: model.value)
 		return view
 	}
 
-	func collectionViewFooter(collectionView: UICollectionView, indexPath: IndexPath, identifier: String) -> UICollectionReusableView {
-		guard let view = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: identifier, for: indexPath) as? ExpandableFooterView else { return UICollectionReusableView() }
+	func collectionViewFooter(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionReusableView {
+		guard let view = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: SectionRegister<ExpandableFooterView, UICollectionView>.sectionIdentifier, for: indexPath) as? ExpandableFooterView else { return UICollectionReusableView() }
 			view.configure(model: model.value)
 		view.delegate = self
 		view.isExpand = isExpand
 		return view
+	}
+
+	func collectionViewHeaderSize(collectionView: UICollectionView) -> CGSize {
+		return CGSize(width: collectionView.bounds.width, height: 60)
+	}
+
+	func collectionViewFooterSize(collectionView: UICollectionView) -> CGSize {
+		return CGSize(width: collectionView.bounds.width, height: 60)
 	}
 }
 

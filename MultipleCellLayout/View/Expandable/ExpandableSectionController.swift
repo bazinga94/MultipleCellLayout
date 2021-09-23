@@ -45,7 +45,7 @@ class ExpandableSectionController: SectionControllerable {
 	}
 
 	func collectionViewCell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
-		let configurator = self.model.value.items[indexPath.row]
+		let configurator = CellConfigurator<ExpandableCollectionViewCell, ExpandableRowModel>.init(item: self.model.value.items[indexPath.row])
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: type(of: configurator).cellIdentifier, for: indexPath)
 		configurator.configure(cell: cell)
 

@@ -22,7 +22,7 @@ class GridSectionController: SectionControllerable {
 	}
 
 	func collectionViewCell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
-		let configurator = self.model.value.items[indexPath.row]
+		let configurator = CellConfigurator<GridCollectionViewCell, GridRowModel>.init(item: self.model.value.items[indexPath.row]) //self.model.value.items[indexPath.row]
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: type(of: configurator).cellIdentifier, for: indexPath)
 		configurator.configure(cell: cell)
 
@@ -31,12 +31,13 @@ class GridSectionController: SectionControllerable {
 
 	func collectionViewCellSize(collectionView: UICollectionView, indexPath: IndexPath) -> CGSize {
 		// 1안... 근데 모델을 여기서 접근 못함
-//		let item = model.value.items[indexPath.row]
-//		let itemSize = item.size(withAttributes: [
-//			NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14)
-//		])
-//		return itemSize
-		return CGSize(width: collectionView.bounds.width/5, height: 20)
+		let item = model.value.items[indexPath.row].content
+		var itemSize = item.size(withAttributes: [
+			NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14)
+		])
+		itemSize.width += 20
+		return itemSize
+//		return CGSize(width: collectionView.bounds.width/5, height: 20)
 	}
 
 	func collectionViewHeader(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionReusableView {

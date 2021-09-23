@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct GridSectionModel: IterableSectionValue {
-	var items: [CellConfigurable]
+struct GridSectionModel {
+	var items: [GridRowModel]
 }
 
 struct GridRowModel {

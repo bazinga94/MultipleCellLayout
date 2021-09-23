@@ -30,16 +30,19 @@ class ViewModel {
 		]
 
 		let gridResponses: [GridResponse] = [
-			GridResponse(row: ["1", "123", "12345", "12", "12345678"])
+			GridResponse(row: ["1", "123", "12345", "12", "12345678", "1231241241", "1231", "1241233", "11", "2", "21344", "1234", "123"])
 		]
 
 		sectionControllers.value = expandableResponses.enumerated().map { (index, response) in
 
-			let cellConfigurators = response.row.map {
-				CellConfigurator<ExpandableCollectionViewCell, ExpandableRowModel>.init(item: ExpandableRowModel(content: $0))
+//			let cellConfigurators = response.row.map {
+//				CellConfigurator<ExpandableCollectionViewCell, ExpandableRowModel>.init(item: ExpandableRowModel(content: $0))
+//			}
+			let expandableRowModel = response.row.map {
+				ExpandableRowModel(content: $0)
 			}
 
-			let expandableSectionController = ExpandableSectionController.init(model: ExpandableSectionModel(headerItem: response.header, footerItem: response.footer, items: cellConfigurators), section: index)
+			let expandableSectionController = ExpandableSectionController.init(model: ExpandableSectionModel(headerItem: response.header, footerItem: response.footer, items: expandableRowModel), section: index)
 
 			expandableSectionController.delegate = delegate
 
@@ -48,11 +51,14 @@ class ViewModel {
 //			return SectionController<ExpandableSectionModel>.init(model: ExpandableSectionModel(headerItem: $0.header, footerItem: $0.footer, items: cellConfigurators))
 		}
 
-		let cellConfigurators = gridResponses[0].row.map {
-			CellConfigurator<GridCollectionViewCell, GridRowModel>.init(item: GridRowModel(content: $0))
+//		let cellConfigurators = gridResponses[0].row.map {
+//			CellConfigurator<GridCollectionViewCell, GridRowModel>.init(item: GridRowModel(content: $0))
+//		}
+		let gridRowModel = gridResponses[0].row.map {
+			GridRowModel(content: $0)
 		}
 
-		let gridSectionController = GridSectionController.init(model: GridSectionModel(items: cellConfigurators))
+		let gridSectionController = GridSectionController.init(model: GridSectionModel(items: gridRowModel))
 
 		sectionControllers.value.append(gridSectionController)
 	}

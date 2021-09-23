@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct ExpandableSectionModel: IterableSectionValue, HeaderValue, FooterValue {
+struct ExpandableSectionModel {
 
 	var headerItem: String
 	var footerItem: String
-	var items: [CellConfigurable]
+	var items: [ExpandableRowModel]
 }
 
 struct ExpandableRowModel {

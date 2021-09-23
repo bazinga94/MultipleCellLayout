@@ -93,8 +93,16 @@ extension ViewController: UICollectionViewDelegate {
 }
 
 extension ViewController: ExpandableSectionDelegate {
-	func sectionReload(isExpand: Bool, section: Int) {
-		let indexSet = IndexSet(integer: section)
-		collectionView.reloadSections(indexSet)
+	func sectionReload(isExpand: Bool, indexPaths: [IndexPath]) {
+//		let indexSet = IndexSet(integer: section)
+//		collectionView.reloadSections(indexSet)
+
+		collectionView.performBatchUpdates({
+			if isExpand {
+				collectionView.insertItems(at: indexPaths)
+			} else {
+				collectionView.deleteItems(at: indexPaths)
+			}
+		})
 	}
 }

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ExpandableSectionDelegate: class {
-	func sectionReload(isExpand: Bool, section: Int)
+	func sectionReload(isExpand: Bool, indexPaths: [IndexPath])
 }
 
 class ExpandableSectionController: SectionControllerable {
@@ -82,6 +82,7 @@ class ExpandableSectionController: SectionControllerable {
 extension ExpandableSectionController: ExpandableFooterViewDelegate {
 	func didTapFooter(isExpand: Bool) {
 		self.isExpand = isExpand
-		delegate?.sectionReload(isExpand: isExpand, section: section)
+		let indexPaths = (0..<model.value.items.count).map { IndexPath(row: $0, section: section) }
+		delegate?.sectionReload(isExpand: isExpand, indexPaths: indexPaths)
 	}
 }

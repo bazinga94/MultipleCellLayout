@@ -30,6 +30,12 @@ class GridSectionController: SectionControllerable {
 	}
 
 	func collectionViewCellSize(collectionView: UICollectionView, indexPath: IndexPath) -> CGSize {
+		// 1안... 근데 모델을 여기서 접근 못함
+//		let item = model.value.items[indexPath.row]
+//		let itemSize = item.size(withAttributes: [
+//			NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14)
+//		])
+//		return itemSize
 		return CGSize(width: collectionView.bounds.width/5, height: 20)
 	}
 

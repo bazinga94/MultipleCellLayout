@@ -23,6 +23,17 @@ class GridCollectionViewCell: UICollectionViewCell, ConfigurableCell {
 		contentLabel.text = data.content
 	}
 
+	override init(frame: CGRect) {
+		super.init(frame: frame)
+		self.addSubview(contentLabel)
+		self.backgroundColor = .orange
+		NSLayoutConstraint.activate(contentLabelConstraints)
+	}
+
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
+
 //	lazy var collectionView: UICollectionView = UICollectionView(frame: .zero)
 //		.builder
 //		.translatesAutoresizingMaskIntoConstraints(false)

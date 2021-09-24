@@ -9,11 +9,15 @@ import UIKit
 
 class ViewController: UIViewController {
 
-	private var isSectionCellAnimatedList: [IndexPath] = []
+//	private var isSectionCellAnimatedList: [IndexPath] = []
+	private var isSectionCellAnimatedList: [Int] = []
 
-	private var isSectionViewAnimatedList: [IndexPath] = []
+//	private var isSectionViewAnimatedList: [IndexPath] = []
+	private var isSectionViewAnimatedList: [Int] = []
 
 	private var visibleLastSection: Int = 0
+
+	private var startDragging: Bool = false
 
 	lazy var collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
 		.builder
@@ -58,6 +62,16 @@ class ViewController: UIViewController {
 		viewModel.fetch(delegate: self)
 		print(collectionView.visibleCells)
 	}
+
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		print(collectionView.visibleCells)
+	}
+
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		print(collectionView.visibleCells)
+	}
 }
 
 extension ViewController: UICollectionViewDataSource {
@@ -98,77 +112,141 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
 
 extension ViewController: UICollectionViewDelegate {
 
-//	(void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath API_AVAILABLE(ios(8.0));
-//
-//	- (void)collectionView:(UICollectionView *)collectionView willDisplaySupplementaryView:(UICollectionReusableView *)view forElementKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath API_AVAILABLE(ios(8.0));
-
-
 	func collectionView(_ collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, at indexPath: IndexPath) {
-		if indexPath.section > visibleLastSection {
-			if isSectionViewAnimatedList.contains(indexPath) == false { //
-				view.alpha = 0.05
-				let transform = CATransform3DTranslate(CATransform3DIdentity, 0, 20, 0)
-				view.layer.transform = transform
 
-				let delay = 2.0
+		print("section", indexPath, elementKind)
+//		if elementKind == UICollectionView.elementKindSectionHeader {
+//			return
+//		}
 
-				UIView.animate(withDuration: 2, delay: delay, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [.curveEaseOut, .allowUserInteraction], animations: {
-					view.alpha = 1
-					view.layer.transform = CATransform3DIdentity
-				})
+		if startDragging {
+			view.alpha = 0.05
+			let transform = CATransform3DTranslate(CATransform3DIdentity, 0, 20, 0)
+			view.layer.transform = transform
 
-				isSectionViewAnimatedList.append(indexPath)
-			}
-		} else {
-			if isSectionViewAnimatedList.contains(indexPath) == false { //
-				view.alpha = 0.05
-				let transform = CATransform3DTranslate(CATransform3DIdentity, 0, 20, 0)
-				view.layer.transform = transform
+			let delay = 1.0
 
-				let delay = 2 * Double(indexPath.section)
+			UIView.animate(withDuration: 2, delay: delay, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [.curveEaseOut, .allowUserInteraction], animations: {
+				view.alpha = 1
+				view.layer.transform = CATransform3DIdentity
+			})
 
-				UIView.animate(withDuration: 2, delay: delay, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [.curveEaseOut, .allowUserInteraction], animations: {
-					view.alpha = 1
-					view.layer.transform = CATransform3DIdentity
-				})
+		} else if !isSectionViewAnimatedList.contains(indexPath.section) {
+			view.alpha = 0.05
+			let transform = CATransform3DTranslate(CATransform3DIdentity, 0, 20, 0)
+			view.layer.transform = transform
 
-				isSectionViewAnimatedList.append(indexPath)
-			}
+			let delay = 1.0 * Double(indexPath.section) //Double(isSectionViewAnimatedList.count)
+
+			UIView.animate(withDuration: 2, delay: delay, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [.curveEaseOut, .allowUserInteraction], animations: {
+				view.alpha = 1
+				view.layer.transform = CATransform3DIdentity
+			})
+
+//			isSectionViewAnimatedList.append(indexPath.section)
 		}
+
+//		if indexPath.section > visibleLastSection {
+//			if isSectionViewAnimatedList.contains(indexPath) == false { //
+//				view.alpha = 0.05
+//				let transform = CATransform3DTranslate(CATransform3DIdentity, 0, 20, 0)
+//				view.layer.transform = transform
+//
+//				let delay = 2.0
+//
+//				UIView.animate(withDuration: 2, delay: delay, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [.curveEaseOut, .allowUserInteraction], animations: {
+//					view.alpha = 1
+//					view.layer.transform = CATransform3DIdentity
+//				})
+//
+//				isSectionViewAnimatedList.append(indexPath)
+//			}
+//		} else {
+//			if isSectionViewAnimatedList.contains(indexPath) == false { //
+//				view.alpha = 0.05
+//				let transform = CATransform3DTranslate(CATransform3DIdentity, 0, 20, 0)
+//				view.layer.transform = transform
+//
+//				let delay = 2 * Double(indexPath.section)
+//
+//				UIView.animate(withDuration: 2, delay: delay, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [.curveEaseOut, .allowUserInteraction], animations: {
+//					view.alpha = 1
+//					view.layer.transform = CATransform3DIdentity
+//				})
+//
+//				isSectionViewAnimatedList.append(indexPath)
+//			}
+//		}
 	}
 
 	func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-		if indexPath.section > visibleLastSection {
-			if isSectionCellAnimatedList.contains(indexPath) == false { //
-				cell.alpha = 0.05
-				let transform = CATransform3DTranslate(CATransform3DIdentity, 0, 20, 0)
-				cell.layer.transform = transform
 
-				let delay = 2.0
+		print("row", indexPath)
+		if startDragging {
+			cell.alpha = 0.05
+			let transform = CATransform3DTranslate(CATransform3DIdentity, 0, 20, 0)
+			cell.layer.transform = transform
 
-				UIView.animate(withDuration: 2, delay: delay, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [.curveEaseOut, .allowUserInteraction], animations: {
-					cell.alpha = 1
-					cell.layer.transform = CATransform3DIdentity
-				})
+			let delay = 1.0
 
-				isSectionCellAnimatedList.append(indexPath)
-			}
-		} else {
-			if isSectionCellAnimatedList.contains(indexPath) == false { //
-				cell.alpha = 0.05
-				let transform = CATransform3DTranslate(CATransform3DIdentity, 0, 20, 0)
-				cell.layer.transform = transform
+			UIView.animate(withDuration: 2, delay: delay, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [.curveEaseOut, .allowUserInteraction], animations: {
+				cell.alpha = 1
+				cell.layer.transform = CATransform3DIdentity
+			})
 
-				let delay = 2 * Double(indexPath.section)
+		} else if !isSectionCellAnimatedList.contains(indexPath.section) {
+			cell.alpha = 0.05
+			let transform = CATransform3DTranslate(CATransform3DIdentity, 0, 20, 0)
+			cell.layer.transform = transform
 
-				UIView.animate(withDuration: 2, delay: delay, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [.curveEaseOut, .allowUserInteraction], animations: {
-					cell.alpha = 1
-					cell.layer.transform = CATransform3DIdentity
-				})
+			let delay = 1.0 * Double(isSectionCellAnimatedList.count)
 
-				isSectionCellAnimatedList.append(indexPath)
-			}
+			UIView.animate(withDuration: 2, delay: delay, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [.curveEaseOut, .allowUserInteraction], animations: {
+				cell.alpha = 1
+				cell.layer.transform = CATransform3DIdentity
+			})
+
+			isSectionCellAnimatedList.append(indexPath.section)
 		}
+
+
+//		if indexPath.section > visibleLastSection {
+//			if isSectionCellAnimatedList.contains(indexPath) == false { //
+//				cell.alpha = 0.05
+//				let transform = CATransform3DTranslate(CATransform3DIdentity, 0, 20, 0)
+//				cell.layer.transform = transform
+//
+//				let delay = 2.0
+//
+//				UIView.animate(withDuration: 2, delay: delay, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [.curveEaseOut, .allowUserInteraction], animations: {
+//					cell.alpha = 1
+//					cell.layer.transform = CATransform3DIdentity
+//				})
+//
+//				isSectionCellAnimatedList.append(indexPath)
+//			}
+//		} else {
+//			if isSectionCellAnimatedList.contains(indexPath) == false { //
+//				cell.alpha = 0.05
+//				let transform = CATransform3DTranslate(CATransform3DIdentity, 0, 20, 0)
+//				cell.layer.transform = transform
+//
+//				let delay = 2 * Double(indexPath.section)
+//
+//				UIView.animate(withDuration: 2, delay: delay, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [.curveEaseOut, .allowUserInteraction], animations: {
+//					cell.alpha = 1
+//					cell.layer.transform = CATransform3DIdentity
+//				})
+//
+//				isSectionCellAnimatedList.append(indexPath)
+//			}
+//		}
+	}
+}
+
+extension ViewController: UIScrollViewDelegate {
+	func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+		startDragging = true
 	}
 }
 

@@ -51,10 +51,10 @@ class GridSectionController: SectionControllerable {
 	}
 
 	func collectionViewHeaderSize(collectionView: UICollectionView) -> CGSize {
-		return CGSize(width: collectionView.bounds.width, height: 1)
+		return CGSize(width: collectionView.bounds.width, height: 10)
 	}
 
 	func collectionViewFooterSize(collectionView: UICollectionView) -> CGSize {
-		return CGSize(width: collectionView.bounds.width, height: 1)
+		return CGSize(width: collectionView.bounds.width, height: 10)
 	}
 }

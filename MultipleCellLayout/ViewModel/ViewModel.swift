@@ -24,9 +24,26 @@ class ViewModel {
 	func fetch(delegate: ExpandableSectionDelegate) {
 
 		let expandableResponses: [ExpandableResponse] = [
-			ExpandableResponse(header: "H 1", footer: "F 1", row: ["1", "2"]),
-			ExpandableResponse(header: "H 2", footer: "F 2", row: ["1", "2", "3", "4"]),
-			ExpandableResponse(header: "H 3", footer: "F 3", row: ["1", "2", "3"]),
+//			ExpandableResponse(header: "H 1", footer: "F 1", row: ["1", "2"]),
+//			ExpandableResponse(header: "H 2", footer: "F 2", row: ["1", "2", "3", "4"]),
+//			ExpandableResponse(header: "H 3", footer: "F 3", row: ["1", "2", "3"]),
+//			ExpandableResponse(header: "H 1", footer: "F 1", row: ["1", "2"]),
+//			ExpandableResponse(header: "H 2", footer: "F 2", row: ["1", "2", "3", "4"]),
+//			ExpandableResponse(header: "H 3", footer: "F 3", row: ["1", "2", "3"])
+			ExpandableResponse(header: "H 1", footer: "F 1", row: ["1"]),
+			ExpandableResponse(header: "H 1", footer: "F 1", row: ["1"]),
+			ExpandableResponse(header: "H 1", footer: "F 1", row: ["1"]),
+			ExpandableResponse(header: "H 1", footer: "F 1", row: ["1"]),
+			ExpandableResponse(header: "H 1", footer: "F 1", row: ["1"]),
+			ExpandableResponse(header: "H 1", footer: "F 1", row: ["1"]),
+			ExpandableResponse(header: "H 1", footer: "F 1", row: ["1"]),
+			ExpandableResponse(header: "H 1", footer: "F 1", row: ["1"]),
+			ExpandableResponse(header: "H 1", footer: "F 1", row: ["1"]),
+			ExpandableResponse(header: "H 1", footer: "F 1", row: ["1"]),
+			ExpandableResponse(header: "H 1", footer: "F 1", row: ["1"]),
+			ExpandableResponse(header: "H 1", footer: "F 1", row: ["1"]),
+			ExpandableResponse(header: "H 1", footer: "F 1", row: ["1"]),
+			ExpandableResponse(header: "H 1", footer: "F 1", row: ["1"]),
 		]
 
 		let gridResponses: [GridResponse] = [

@@ -41,7 +41,7 @@ class ExpandableSectionController: SectionControllerable {
 			// reload
 		}
 		self.section = section
-		self.isExpand = false
+		self.isExpand = false //true
 		self._rowCount = 0 // self.model.value.items.count
 	}
 

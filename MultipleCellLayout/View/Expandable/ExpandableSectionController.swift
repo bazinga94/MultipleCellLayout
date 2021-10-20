@@ -41,8 +41,8 @@ class ExpandableSectionController: SectionControllerable {
 			// reload
 		}
 		self.section = section
-		self.isExpand = false //true
-		self._rowCount = 0 // self.model.value.items.count
+		self.isExpand = true //true / false
+		self._rowCount = self.model.value.items.count // self.model.value.items.count / 0
 	}
 
 	func collectionViewCell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {

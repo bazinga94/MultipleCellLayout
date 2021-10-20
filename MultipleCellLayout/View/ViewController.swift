@@ -13,7 +13,9 @@ class ViewController: UIViewController {
 	private var isSectionCellAnimatedList: [Int] = []
 
 //	private var isSectionViewAnimatedList: [IndexPath] = []
-	private var isSectionViewAnimatedList: [Int] = []
+//	private var isSectionViewAnimatedList: [Int] = []
+	private var isSectionHeaderAnimatedList: [Int] = []
+	private var isSectionFooterAnimatedList: [Int] = []
 
 	private var visibleLastSection: Int = 0
 
@@ -119,30 +121,48 @@ extension ViewController: UICollectionViewDelegate {
 //			return
 //		}
 
+		if elementKind == UICollectionView.elementKindSectionHeader && isSectionHeaderAnimatedList.contains(indexPath.section) {
+			return
+		}
+
+		if elementKind == UICollectionView.elementKindSectionFooter && isSectionFooterAnimatedList.contains(indexPath.section) {
+			return
+		}
+
 		if startDragging {
 			view.alpha = 0.05
 			let transform = CATransform3DTranslate(CATransform3DIdentity, 0, 20, 0)
 			view.layer.transform = transform
 
-			let delay = 1.0
+			let delay = 0.0
 
-			UIView.animate(withDuration: 2, delay: delay, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [.curveEaseOut, .allowUserInteraction], animations: {
+			UIView.animate(withDuration: 0.5, delay: delay, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [.curveEaseOut, .allowUserInteraction], animations: {
 				view.alpha = 1
 				view.layer.transform = CATransform3DIdentity
 			})
-
-		} else if !isSectionViewAnimatedList.contains(indexPath.section) {
+			if elementKind == UICollectionView.elementKindSectionHeader {
+				isSectionHeaderAnimatedList.append(indexPath.section)
+			} else {
+				isSectionFooterAnimatedList.append(indexPath.section)
+			}
+//			isSectionViewAnimatedList.append(indexPath.section)
+		} else {
 			view.alpha = 0.05
 			let transform = CATransform3DTranslate(CATransform3DIdentity, 0, 20, 0)
 			view.layer.transform = transform
 
-			let delay = 1.0 * Double(indexPath.section) //Double(isSectionViewAnimatedList.count)
+			let delay = 0.5 * Double(indexPath.section) //Double(isSectionViewAnimatedList.count)
 
-			UIView.animate(withDuration: 2, delay: delay, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [.curveEaseOut, .allowUserInteraction], animations: {
+			UIView.animate(withDuration: 0.5, delay: delay, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [.curveEaseOut, .allowUserInteraction], animations: {
 				view.alpha = 1
 				view.layer.transform = CATransform3DIdentity
 			})
 
+			if elementKind == UICollectionView.elementKindSectionHeader {
+				isSectionHeaderAnimatedList.append(indexPath.section)
+			} else {
+				isSectionFooterAnimatedList.append(indexPath.section)
+			}
 //			isSectionViewAnimatedList.append(indexPath.section)
 		}
 
@@ -182,26 +202,33 @@ extension ViewController: UICollectionViewDelegate {
 	func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
 
 		print("row", indexPath)
+
+		if isSectionCellAnimatedList.contains(indexPath.section) {
+			return
+		}
+
 		if startDragging {
 			cell.alpha = 0.05
 			let transform = CATransform3DTranslate(CATransform3DIdentity, 0, 20, 0)
 			cell.layer.transform = transform
 
-			let delay = 1.0
+			let delay = 0.0
 
-			UIView.animate(withDuration: 2, delay: delay, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [.curveEaseOut, .allowUserInteraction], animations: {
+			UIView.animate(withDuration: 0.5, delay: delay, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [.curveEaseOut, .allowUserInteraction], animations: {
 				cell.alpha = 1
 				cell.layer.transform = CATransform3DIdentity
 			})
 
-		} else if !isSectionCellAnimatedList.contains(indexPath.section) {
+			isSectionCellAnimatedList.append(indexPath.section)
+
+		} else {
 			cell.alpha = 0.05
 			let transform = CATransform3DTranslate(CATransform3DIdentity, 0, 20, 0)
 			cell.layer.transform = transform
 
-			let delay = 1.0 * Double(isSectionCellAnimatedList.count)
+			let delay = 0.5 * Double(isSectionCellAnimatedList.count)
 
-			UIView.animate(withDuration: 2, delay: delay, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [.curveEaseOut, .allowUserInteraction], animations: {
+			UIView.animate(withDuration: 0.5, delay: delay, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [.curveEaseOut, .allowUserInteraction], animations: {
 				cell.alpha = 1
 				cell.layer.transform = CATransform3DIdentity
 			})

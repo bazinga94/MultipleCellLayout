@@ -165,38 +165,6 @@ extension ViewController: UICollectionViewDelegate {
 			}
 //			isSectionViewAnimatedList.append(indexPath.section)
 		}
-
-//		if indexPath.section > visibleLastSection {
-//			if isSectionViewAnimatedList.contains(indexPath) == false { //
-//				view.alpha = 0.05
-//				let transform = CATransform3DTranslate(CATransform3DIdentity, 0, 20, 0)
-//				view.layer.transform = transform
-//
-//				let delay = 2.0
-//
-//				UIView.animate(withDuration: 2, delay: delay, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [.curveEaseOut, .allowUserInteraction], animations: {
-//					view.alpha = 1
-//					view.layer.transform = CATransform3DIdentity
-//				})
-//
-//				isSectionViewAnimatedList.append(indexPath)
-//			}
-//		} else {
-//			if isSectionViewAnimatedList.contains(indexPath) == false { //
-//				view.alpha = 0.05
-//				let transform = CATransform3DTranslate(CATransform3DIdentity, 0, 20, 0)
-//				view.layer.transform = transform
-//
-//				let delay = 2 * Double(indexPath.section)
-//
-//				UIView.animate(withDuration: 2, delay: delay, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [.curveEaseOut, .allowUserInteraction], animations: {
-//					view.alpha = 1
-//					view.layer.transform = CATransform3DIdentity
-//				})
-//
-//				isSectionViewAnimatedList.append(indexPath)
-//			}
-//		}
 	}
 
 	func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -235,39 +203,6 @@ extension ViewController: UICollectionViewDelegate {
 
 			isSectionCellAnimatedList.append(indexPath.section)
 		}
-
-
-//		if indexPath.section > visibleLastSection {
-//			if isSectionCellAnimatedList.contains(indexPath) == false { //
-//				cell.alpha = 0.05
-//				let transform = CATransform3DTranslate(CATransform3DIdentity, 0, 20, 0)
-//				cell.layer.transform = transform
-//
-//				let delay = 2.0
-//
-//				UIView.animate(withDuration: 2, delay: delay, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [.curveEaseOut, .allowUserInteraction], animations: {
-//					cell.alpha = 1
-//					cell.layer.transform = CATransform3DIdentity
-//				})
-//
-//				isSectionCellAnimatedList.append(indexPath)
-//			}
-//		} else {
-//			if isSectionCellAnimatedList.contains(indexPath) == false { //
-//				cell.alpha = 0.05
-//				let transform = CATransform3DTranslate(CATransform3DIdentity, 0, 20, 0)
-//				cell.layer.transform = transform
-//
-//				let delay = 2 * Double(indexPath.section)
-//
-//				UIView.animate(withDuration: 2, delay: delay, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [.curveEaseOut, .allowUserInteraction], animations: {
-//					cell.alpha = 1
-//					cell.layer.transform = CATransform3DIdentity
-//				})
-//
-//				isSectionCellAnimatedList.append(indexPath)
-//			}
-//		}
 	}
 }
 

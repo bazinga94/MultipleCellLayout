@@ -131,20 +131,21 @@ extension ViewController: UICollectionViewDelegate {
 
 		if startDragging {
 			view.alpha = 0.05
-			let transform = CATransform3DTranslate(CATransform3DIdentity, 0, 20, 0)
-			view.layer.transform = transform
+//			let transform = CATransform3DTranslate(CATransform3DIdentity, 0, 20, 0)
+//			view.layer.transform = transform
+//
+//			let delay = 0.0
+//
+//			UIView.animate(withDuration: 0.5, delay: delay, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [.curveEaseOut, .allowUserInteraction], animations: {
+//				view.alpha = 1
+//				view.layer.transform = CATransform3DIdentity
+//			})
+//			if elementKind == UICollectionView.elementKindSectionHeader {
+//				isSectionHeaderAnimatedList.append(indexPath.section)
+//			} else {
+//				isSectionFooterAnimatedList.append(indexPath.section)
+//			}
 
-			let delay = 0.0
-
-			UIView.animate(withDuration: 0.5, delay: delay, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [.curveEaseOut, .allowUserInteraction], animations: {
-				view.alpha = 1
-				view.layer.transform = CATransform3DIdentity
-			})
-			if elementKind == UICollectionView.elementKindSectionHeader {
-				isSectionHeaderAnimatedList.append(indexPath.section)
-			} else {
-				isSectionFooterAnimatedList.append(indexPath.section)
-			}
 //			isSectionViewAnimatedList.append(indexPath.section)
 		} else {
 			view.alpha = 0.05
@@ -177,17 +178,17 @@ extension ViewController: UICollectionViewDelegate {
 
 		if startDragging {
 			cell.alpha = 0.05
-			let transform = CATransform3DTranslate(CATransform3DIdentity, 0, 20, 0)
-			cell.layer.transform = transform
-
-			let delay = 0.0
-
-			UIView.animate(withDuration: 0.5, delay: delay, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [.curveEaseOut, .allowUserInteraction], animations: {
-				cell.alpha = 1
-				cell.layer.transform = CATransform3DIdentity
-			})
-
-			isSectionCellAnimatedList.append(indexPath.section)
+//			let transform = CATransform3DTranslate(CATransform3DIdentity, 0, 20, 0)
+//			cell.layer.transform = transform
+//
+//			let delay = 0.0
+//
+//			UIView.animate(withDuration: 0.5, delay: delay, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [.curveEaseOut, .allowUserInteraction], animations: {
+//				cell.alpha = 1
+//				cell.layer.transform = CATransform3DIdentity
+//			})
+//
+//			isSectionCellAnimatedList.append(indexPath.section)
 
 		} else {
 			cell.alpha = 0.05
@@ -209,6 +210,65 @@ extension ViewController: UICollectionViewDelegate {
 extension ViewController: UIScrollViewDelegate {
 	func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
 		startDragging = true
+	}
+
+	func scrollViewDidScroll(_ scrollView: UIScrollView) {
+		if startDragging {
+//			print(scrollView.contentOffset.y)
+			guard let collectionView = scrollView as? UICollectionView else { return }
+			let visibleRect = CGRect(origin: collectionView.contentOffset, size: collectionView.bounds.size)
+			let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY + collectionView.frame.height/4)
+//			print(visiblePoint)
+			if let visibleIndexPath = collectionView.indexPathForItem(at: visiblePoint) {
+
+				print(visibleIndexPath.section, visibleIndexPath.row)
+				if let cell = collectionView.cellForItem(at: visibleIndexPath) {
+					if isSectionCellAnimatedList.contains(visibleIndexPath.section) { return }
+
+					let transform = CATransform3DTranslate(CATransform3DIdentity, 0, 20, 0)
+					cell.layer.transform = transform
+
+					let delay = 0.0
+
+					UIView.animate(withDuration: 0.5, delay: delay, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [.curveEaseOut, .allowUserInteraction], animations: {
+						cell.alpha = 1
+						cell.layer.transform = CATransform3DIdentity
+					})
+
+					isSectionCellAnimatedList.append(visibleIndexPath.section)
+				}
+				if let header = collectionView.supplementaryView(forElementKind: UICollectionView.elementKindSectionHeader, at: visibleIndexPath) {
+					if isSectionHeaderAnimatedList.contains(visibleIndexPath.section) { return }
+
+					let transform = CATransform3DTranslate(CATransform3DIdentity, 0, 20, 0)
+					header.layer.transform = transform
+
+					let delay = 0.0
+
+					UIView.animate(withDuration: 0.5, delay: delay, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [.curveEaseOut, .allowUserInteraction], animations: {
+						header.alpha = 1
+						header.layer.transform = CATransform3DIdentity
+					})
+
+					isSectionHeaderAnimatedList.append(visibleIndexPath.section)
+				}
+				if let footer = collectionView.supplementaryView(forElementKind: UICollectionView.elementKindSectionFooter, at: visibleIndexPath) {
+					if isSectionFooterAnimatedList.contains(visibleIndexPath.section) { return }
+
+					let transform = CATransform3DTranslate(CATransform3DIdentity, 0, 20, 0)
+					footer.layer.transform = transform
+
+					let delay = 0.0
+
+					UIView.animate(withDuration: 0.5, delay: delay, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [.curveEaseOut, .allowUserInteraction], animations: {
+						footer.alpha = 1
+						footer.layer.transform = CATransform3DIdentity
+					})
+
+					isSectionFooterAnimatedList.append(visibleIndexPath.section)
+				}
+			}
+		}
 	}
 }
 

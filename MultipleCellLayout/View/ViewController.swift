@@ -219,9 +219,14 @@ extension ViewController: UIScrollViewDelegate {
 			let visibleRect = CGRect(origin: collectionView.contentOffset, size: collectionView.bounds.size)
 			let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY + collectionView.frame.height/4)
 //			print(visiblePoint)
+
+			let layout = collectionView.collectionViewLayout.layoutAttributesForElements(in: CGRect(x: 0, y: visibleRect.maxY - 250, width: visibleRect.width, height: 5))
+
+			layout?.forEach { print("###", $0.indexPath) }
+
 			if let visibleIndexPath = collectionView.indexPathForItem(at: visiblePoint) {
 
-				print(visibleIndexPath.section, visibleIndexPath.row)
+				print("!!!", visibleIndexPath.section, visibleIndexPath.row)
 				if let cell = collectionView.cellForItem(at: visibleIndexPath) {
 					if isSectionCellAnimatedList.contains(visibleIndexPath.section) { return }
 
